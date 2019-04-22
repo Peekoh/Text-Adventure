@@ -1,28 +1,53 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<template >
+  <!--v-cloak hides attributes while mounting move to output
+  ADD IF ELSE LOGIC-->
+  <div id="app" v-cloak>
+    <div class="scanlines">
+      <Header/>
+
+      <Output/>
+
+     <div id="info">
+        <Character/>
+        <Inventory/>
+     </div>
+     
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/layout/Header.vue";
+import Character from "./components/Character.vue";
+import Output from "./components/Output.vue";
+import Inventory from "./components/Inventory.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    Header,
+    Character,
+    Output,
+    Inventory
+    // Output
+    //axios
+  },
+  data() {
+    return {
+      /* room: null,
+      roomDesc: "",
+      input: "",
+      rooms: null,
+      initialRoom: "Entrance", */
+      //  loading:true,
+    };
   }
-}
+};
 </script>
+<style lang="scss">
+@import "./scss/main.scss";
+@import "./scss/scanlines.scss";
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
+
+

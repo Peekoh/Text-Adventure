@@ -1,0 +1,73 @@
+%reset {
+  padding: 0;
+  margin: 0 !important;
+}
+
+/*SCANLINES*/
+$scanWidth: 2px;
+$scanColor: #1c1c1c;
+$zIndex: 2147483648;
+$movingLine: true;
+$opacity: 0.6;
+
+@mixin scanMoving($movingLine) {
+  @if $movingLine==true {
+    animation: scanline 6s linear infinite;
+  }
+
+  @else {
+    animation: none;
+  }
+}
+
+.scanlines {
+  height: 100%;
+  width: 100%;
+  @extend %reset;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    display: block;
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    opacity: $opacity;
+  }
+
+  //Traveling Lines
+  &:before {
+    width: 100%;
+    height: $scanWidth * 1;
+    z-index: $zIndex + 1;
+    background: $scanColor;
+
+    @include scanMoving($movingLine);
+  }
+
+  //Static Lines
+  &:after {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: inherit $zIndex;
+    background: linear-gradient(to bottom, transparent 50%, $scanColor 51%);
+    background-size: 100% $scanWidth * 2;
+  }
+}
+
+/*Animate scan*/
+@keyframes scanline {
+  0% {
+    transform: translate3d(0, 200000%, 0);
+  }
+}
+
+@keyframes scanlines {
+  0% {
+    background-position: 0 50%;
+  }
+}

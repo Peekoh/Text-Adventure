@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Major+Mono+Display');
+$fontheader : 'Major Mono Display',
+monospace;
+$fontmain: Inconsolata,
+monospace;
+
+%reset {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin flex ($display, $flow, $align, $justify) {
+  display: $display;
+  flex-flow: $flow;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+body,
+html {
+  @extend %reset;
+  height:100%;
+  #app {
+    text-shadow: 0 0 6px #c8c8c8;
+    text-align: center;
+    color: #fff;
+    background-color: black;
+    background-image: radial-gradient(rgba(184, 214, 102, 0.541), black 120%);
+   // height: 100%;
+
+    p,
+    li,
+    input,
+    span {
+      letter-spacing: .2em;
+      font-size: 1.4em;
+      font-family: $fontmain;
+    }
+
+    h2 {
+      letter-spacing: .4em;
+      font-family: $fontheader;
+    }
+
+    #info {
+      @extend %reset;
+      @include flex(flex, row wrap, center, center)
+     
+    }
+
+  }
+
+}
